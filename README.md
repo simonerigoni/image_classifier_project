@@ -24,6 +24,8 @@ This project uses Python 3.7.2 and the following libraries:
 * [PyTorch](https://pytorch.org/)
 * [Pillow](https://pillow.readthedocs.io/en/stable/)
 
+More informations in `requirements.txt`. To create it I have used `python -m pip freeze > requirements.txt`. To install all Python packages written in the requirements.txt file run `pip install -r requirements.txt`.
+
 ## Data
 The dataset is provided by [Udacity](http://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html) and is composed by:
 * **flowers/test**: .jpg images for test
