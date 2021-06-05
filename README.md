@@ -75,6 +75,8 @@ Flowchart made using [draw.io](https://about.draw.io/)
 
 All the modules provide the help funcionality provided by [argparse](https://docs.python.org/3/library/argparse.html) module.
 
+If while training the classifier you get `RuntimeError: CUDA out of memory. Tried to allocate ... ` try reducing your `BATCH_SIZE`. More info [here](https://stackoverflow.com/questions/61234957/how-to-solve-cuda-out-of-memory-tried-to-allocate-xxx-mib-in-pytorch)
+
 ## Results
 
 The dash application 

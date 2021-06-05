@@ -8,3 +8,14 @@ Include/
 Lib/
 Scripts/
 pyvenv.cfg
+
+# Ignore the jupyter directories
+
+.ipynb_checkpoints/
+share/
+etc/
+
+# Ignore the model checkpoint
+
+classifier/checkpoint.pth
+checkpoint.pth

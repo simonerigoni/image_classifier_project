@@ -168,7 +168,7 @@ def _create_app():
                                 html.Ul(
                                     [
                                         html.Li(html.A('Made with Udacity', href='https://www.udacity.com/'))
-                                        , html.Li(html.A('Github', href='https://github.com/simonerigoni/udacity/tree/master/data_scientist_nanodegree/core_curriculum/term_1/deep_learning/image_classifier_project'))
+                                        , html.Li(html.A('Github', href='https://github.com/simonerigoni/image_classifier_project'))
                                     ], className = 'nav navbar-nav')
                             ], className = 'collapse navbar-collapse')
                     ], className = 'container')
