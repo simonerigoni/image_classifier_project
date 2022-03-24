@@ -93,13 +93,6 @@ When an image is submitted with the **Classify Message** button the resulting ca
 
 Results are better explained in this [blog post](https://medium.com/@simone.rigoni01/do-you-know-this-flower-image-classifier-using-pytorch-1d45c3a3df1c)
 
-
-## TODO
-
-* 0 - Delete this TODO section when all the tasks are working properly
-* 1 - In image_classifier_project.py: can be intresting to plot how many images we have for each class
-
-
 ## Licensing and Acknowledgements
 
 Thank you Udacity for the datasets and more information about the licensing of the data can be find [here](http://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html)
