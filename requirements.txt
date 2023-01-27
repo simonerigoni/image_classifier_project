@@ -62,7 +62,7 @@ Send2Trash==1.5.0
 six==1.16.0
 terminado==0.10.0
 testpath==0.5.0
-torch==1.8.1+cu111
+torch==1.13.1
 torchaudio==0.8.1
 torchvision==0.9.1+cu111
 tornado==6.1
