@@ -1,21 +1,25 @@
-# Ignore the python compiled files
+# General stuff to ignore
 
+## Python compiled files
 *.pyc
 
-# Ignore the venv directories and configuration
+# Actual project folders and files to ignore
 
-Include/
-Lib/
-Scripts/
-pyvenv.cfg
+## Virtual enviroment folder
+.venv/
 
-# Ignore the jupyter directories
+## pytest cache files 
+.pytest_cache/
 
-.ipynb_checkpoints/
-share/
-etc/
+## Temp stuff
+temp/
 
-# Ignore the model checkpoint
+## Logs
+logs/
 
+## Code style reports
+code_style/
+
+## Ignore big files
 classifier/checkpoint.pth
 checkpoint.pth
