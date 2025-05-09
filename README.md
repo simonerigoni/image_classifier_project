@@ -62,8 +62,6 @@ More information in [this paper](http://www.robots.ox.ac.uk/~vgg/publications/20
 
 ## Workflow
 
-## Workflow
-
 Following the project instructions I have completed the provided notebook `image_classifier_project.ipynb`
 
 Then I have used this notebook to write the scripts:
@@ -105,6 +103,10 @@ I prefere to check and update one file at the time because the previous recursiv
 
 ## Running the code
 
+### Notebook
+
+`image_classifier_project.ipynb` is a [Jupyter Notebook](http://ipython.org/notebook.html). 
+
 ### Console
 
 You can run `python image_classifier_project.py`.
@@ -113,13 +115,7 @@ You can run `python image_classifier_project.py`.
 
 You can run `python dash_app.py` to start the dash application. The default url to connect to it is http://127.0.0.1:8050/.
 
---
-The code is provided in a [Jupyter Notebook](http://ipython.org/notebook.html) then converted in a dash application
-
-If you download Jupyter Notebook simply run the command `jupyter notebook image_classifier_project.ipynb` in the folder were the file is located to check out load data, Building and training the classifier an testing.
-From the project folder run `python dash_image_classifier_project.py` to start the dash application. The default url to connect to it is http://127.0.0.1:8050/
-
-If the application does not find the **checkpoint.pth** checkpoint file to load the model it will train the model (save it in **classifier/checkpoint.pth**) to get the application ready to classify images in real time
+In any case if the **data/checkpoint.pth** is not found the code will train the model, save it and load it to be able to classify images in real time.
 
 ![Flowchart](images/flowchart.png)
 
