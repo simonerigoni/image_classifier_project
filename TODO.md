@@ -1,6 +1,6 @@
-# Disaster Response Pipeline Project
+# Image Classifier Project
 
-## Introduction
+## TODO
 
 Overview of the status of the tasks of this project.
 
@@ -9,6 +9,7 @@ Overview of the status of the tasks of this project.
 
 ### To do
 
+- [ ] Use uv and pre-commit
 - [ ] Can be intresting to plot how many images we have for each class in the training dataset. Is the dataset unbalanced?
 - [ ] Add tests to test_train.py
 - [ ] Add tests to test_predict.py

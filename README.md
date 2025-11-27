@@ -3,6 +3,7 @@
 ## Introduction
 
 This project is part of The [Udacity](https://eu.udacity.com/) Data Scientist Nanodegree Program which is composed by:
+
 * Term 1
     * Supervised Learning
     * Deep Learning
@@ -16,7 +17,7 @@ The goal of this project is to train an image classifier to recognize different 
 
 ## Software and Libraries
 
-This project uses Python 3.11.9 and the most important packages are:
+This project uses Python 3.11 and the most important packages are:
 
 - [NumPy](http://www.numpy.org/)
 - [Pandas](http://pandas.pydata.org)
@@ -40,6 +41,8 @@ torch==2.7.0+cu128
 
 in `requirements.txt` file.
 
+## Local configuration
+
 To setup a new local enviroment and install all dependencies you can run `.\my_scripts\Set-Up.ps1`
 
 Alternatively to create the virtual enviroment you can run `python -m venv .venv`.
@@ -50,28 +53,7 @@ To create a complete requirements file you can run `pip freeze > requirements.tx
 
 ## Data
 
-The dataset is provided by [Udacity](http://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html) and is composed by:
-* **data/flowers/test**: .jpg images for test
-* **data/flowers/train** .jpg images to train the classifier
-* **data/flowers/valid** .jpg images for validation
-* **data/cat_to_name.json**: dictionary mapping the integer encoded categories to the actual names of the flowers
-
-This set contains images of flowers belonging to 102 different categories. The images were acquired by searching the web and taking pictures. The images have large scale, pose and light variations. In addition, there are categories that have large variations within the category and several very similar categories
-
-More information in [this paper](http://www.robots.ox.ac.uk/~vgg/publications/2008/Nilsback08) by M. Nilsback, A. Zisserman
-
-## Workflow
-
-Following the project instructions I have completed the provided notebook `image_classifier_project.ipynb`
-
-Then I have used this notebook to write the scripts:
-
-1. `train.py.py`
-2. `predict.py`
-
-Finally I have developed `image_classifier_project.py` to put everything toghether.
-
-To make the project a bit more interactive I developed also the  dash application `dash_app.py`.
+Have a look at the `data` folder and its [DATA.md](data/DATA.md) file.
 
 ## Testing
 
@@ -86,6 +68,7 @@ To run a single test: `pytest .\tests\test_config.py::test_dummy`
 [PEP8](https://peps.python.org/pep-0008/) is the style guide for Python code, and it's good practice to follow it to ensure your code is readable and consistent.
 
 To check and format my code according to PEP8 I am using:
+
 - [pycodestyle](https://pypi.org/project/pycodestyle/): tool to check the code against PEP 8 conventions.
 - [autopep8](https://pypi.org/project/autopep8/): tool to automatically format Python code according to PEP 8 standards.
 
@@ -102,6 +85,17 @@ I prefere to check and update one file at the time because the previous recursiv
 `autopep8 --in-place .\utils\config.py`
 
 ## Running the code
+
+Following the project instructions I have completed the provided notebook `image_classifier_project.ipynb`
+
+Then I have used this notebook to write the scripts:
+
+1. `train.py.py`
+2. `predict.py`
+
+Finally I have developed `image_classifier_project.py` to put everything toghether.
+
+To make the project a bit more interactive I developed also the  dash application `dash_app.py`.
 
 ### Notebook
 
@@ -141,11 +135,11 @@ When an image is submitted with the **Classify Message** button the resulting ca
 
 ## List of activities
 
-In the [TODO](TODO.md) file you can find the list of tasks and on going activities.
+In the [TODO.md](TODO.md) file you can find the list of tasks and on going activities.
 
 ## Licensing and Acknowledgements
 
-Have a look at [LICENSE](LICENSE.md) and many thanks to [Udacity](https://eu.udacity.com/) for the dataset. More information about the licensing of the data can be found [here](http://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html).
+Have a look at [LICENSE.md](LICENSE.md) and many thanks to [Udacity](https://eu.udacity.com/) for the dataset. More information about the licensing of the data can be found [here](http://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html).
 
 ## Outro
 
