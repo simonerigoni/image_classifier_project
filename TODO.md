@@ -6,7 +6,6 @@ Overview of the status of the tasks of this project.
 
 ## Tasks
 
-
 ### To do
 
 - [ ] Use uv and pre-commit
@@ -18,7 +17,7 @@ Overview of the status of the tasks of this project.
 
 ### In Progress
 
-- [ ]
+- [ ] None
 
 ### Done ✓
 
