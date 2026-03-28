@@ -25,29 +25,6 @@ if (Test-Path $venvFolder) {
     Write-Host "Virtual environment does not exist!" -ForegroundColor Green
 }
 
-# Delete specific files if needed
-$dataFolder = ".\data"
-$filesToDelete = @("checkpoint.pth")
-
-Write-Host "Checking for specific files in $dataFolder folder..." -ForegroundColor Yellow
-if (Test-Path $dataFolder) {
-    foreach ($file in $filesToDelete) {
-        $filePath = Join-Path -Path $dataFolder -ChildPath $file
-        if (Test-Path $filePath) {
-            Write-Host "Deleting $file..." -ForegroundColor Yellow
-            try {
-                Remove-Item -Path $filePath -Force
-                Write-Host "$file deleted!" -ForegroundColor Green
-            } catch {
-                Write-Host "Failed to delete $file!" -ForegroundColor Red
-                exit 1
-            }
-        } else {
-            Write-Host "$file does not exist!" -ForegroundColor Green
-        }
-    }
-} else {
-    Write-Host "$dataFolder folder does not exist!" -ForegroundColor Green
-}
+# TODO: delete installed tools?
 
 Write-Host "Cleanup complete!" -ForegroundColor Green

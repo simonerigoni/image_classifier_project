@@ -12,8 +12,11 @@ temp/
 # Pytest cache
 .pytest_cache/
 
-# Code style reports
-code_style/
+# Ruff cache
+.ruff_cache/
 
 # Big files
 data/checkpoint.pth
+
+# pytest-cov stuff
+.coverage
