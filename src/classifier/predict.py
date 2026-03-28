@@ -17,7 +17,13 @@ from PIL import Image
 import argparse
 
 
-from src.config import CATEGORY_FILENAME, CHECKPOINT_FILENAME, TEST_IMAGE, DEFAULT_TOP_K, DEFAULT_GPU
+from src.config import (
+    CATEGORY_FILENAME,
+    CHECKPOINT_FILENAME,
+    TEST_IMAGE,
+    DEFAULT_TOP_K,
+    DEFAULT_GPU,
+)
 
 
 SIZE_CROP = 224
@@ -27,7 +33,7 @@ NORMALIZE_STD = [0.229, 0.224, 0.225]
 
 
 def parse_input_arguments():
-    '''
+    """
     Parse input arguments
 
     Args:
@@ -39,19 +45,27 @@ def parse_input_arguments():
         top_k (int): number of top clases to use. Default value DEFAULT_TOP_K
         category_names (str): Mapping file category label to name. Default value CATEGORY_FILENAME
         gpu (boolean): Enable the use of GPU. Default value DEFAULT_GPU
-    '''
-    parser = argparse.ArgumentParser(
-        description="Predict using a deep neural network")
-    parser.add_argument('--image_path', type=str,
-                        default=TEST_IMAGE, help='Dataset path')
-    parser.add_argument('--checkpoint_path', type=str, default=CHECKPOINT_FILENAME,
-                        help='Path to load trained model checkpoint')
-    parser.add_argument('--top_k', type=int,
-                        default=DEFAULT_TOP_K, help='Top K most likely classes')
-    parser.add_argument('--category_names', type=str, default=CATEGORY_FILENAME,
-                        help='File .json for the mapping of categories to real names')
-    parser.add_argument('--gpu', action="store_true",
-                        default=DEFAULT_GPU, help='Use GPU if available')
+    """
+    parser = argparse.ArgumentParser(description="Predict using a deep neural network")
+    parser.add_argument("--image_path", type=str, default=TEST_IMAGE, help="Dataset path")
+    parser.add_argument(
+        "--checkpoint_path",
+        type=str,
+        default=CHECKPOINT_FILENAME,
+        help="Path to load trained model checkpoint",
+    )
+    parser.add_argument(
+        "--top_k", type=int, default=DEFAULT_TOP_K, help="Top K most likely classes"
+    )
+    parser.add_argument(
+        "--category_names",
+        type=str,
+        default=CATEGORY_FILENAME,
+        help="File .json for the mapping of categories to real names",
+    )
+    parser.add_argument(
+        "--gpu", action="store_true", default=DEFAULT_GPU, help="Use GPU if available"
+    )
 
     args = parser.parse_args()
     # print(args)
@@ -60,7 +74,7 @@ def parse_input_arguments():
 
 
 def load_model_checkpoint(file_path):
-    '''
+    """
     Load the model checkpoint
 
     Args:
@@ -68,34 +82,36 @@ def load_model_checkpoint(file_path):
 
     Returns:
         model (object): model loaded from checkpoint
-    '''
+    """
     checkpoint = torch.load(file_path, weights_only=False)
-    learning_rate = checkpoint['learning_rate']
-    model = getattr(torchvision.models, checkpoint['network'])(
-        weights='IMAGENET1K_V1')
-    model.classifier = checkpoint['classifier']
-    model.epochs = checkpoint['epochs']
-    model.optimizer = checkpoint['optimizer']
-    model.load_state_dict(checkpoint['state_dict'])
-    model.class_to_idx = checkpoint['class_to_idx']
+    # learning_rate = checkpoint["learning_rate"]
+    model = getattr(torchvision.models, checkpoint["network"])(weights="IMAGENET1K_V1")
+    model.classifier = checkpoint["classifier"]
+    model.epochs = checkpoint["epochs"]
+    model.optimizer = checkpoint["optimizer"]
+    model.load_state_dict(checkpoint["state_dict"])
+    model.class_to_idx = checkpoint["class_to_idx"]
 
     return model
 
 
 def process_image(pil_image):
-    '''
+    """
     Scales, crops, and normalizes a PIL image for a PyTorch model
 
     Args:
-        pil_image (PIL.Image): PIL image 
+        pil_image (PIL.Image): PIL image
 
     Returns:
         np_image (numpy.array): image in numpy array
-    '''
-    img_loader = torchvision.transforms.Compose([torchvision.transforms.Resize(SIZE_RESIZE),
-                                                 torchvision.transforms.CenterCrop(
-                                                     SIZE_CROP),
-                                                 torchvision.transforms.ToTensor()])
+    """
+    img_loader = torchvision.transforms.Compose(
+        [
+            torchvision.transforms.Resize(SIZE_RESIZE),
+            torchvision.transforms.CenterCrop(SIZE_CROP),
+            torchvision.transforms.ToTensor(),
+        ]
+    )
 
     # pil_image = Image.open(image)
     pil_image = img_loader(pil_image).float()
@@ -111,7 +127,7 @@ def process_image(pil_image):
 
 
 def get_prediction(image_path, model, top_k_probabilities=DEFAULT_TOP_K):
-    '''
+    """
     Predict the class (or classes) of an image using a trained deep learning model
 
     Args:
@@ -122,9 +138,9 @@ def get_prediction(image_path, model, top_k_probabilities=DEFAULT_TOP_K):
     Returns:
         top_probabilities (list): top k probabilities
         top_mapped_classes (list): top k label classes
-    '''
+    """
     # Use GPU if it's available
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # print(device)
 
     model.to(device)
@@ -147,13 +163,11 @@ def get_prediction(image_path, model, top_k_probabilities=DEFAULT_TOP_K):
     log_probabilities = model.forward(inputs)
     probabilities = torch.exp(log_probabilities)
 
-    top_probabilities, top_classes = probabilities.topk(
-        top_k_probabilities, dim=1)
+    top_probabilities, top_classes = probabilities.topk(top_k_probabilities, dim=1)
     # print(top_probabilities)
     # print(top_classes)
 
-    class_to_idx_inverted = {
-        model.class_to_idx[c]: c for c in model.class_to_idx}
+    class_to_idx_inverted = {model.class_to_idx[c]: c for c in model.class_to_idx}
     top_mapped_classes = list()
 
     for label in top_classes.cpu().detach().numpy()[0]:
@@ -163,7 +177,7 @@ def get_prediction(image_path, model, top_k_probabilities=DEFAULT_TOP_K):
 
 
 def get_mapping_label_name_categories(category_names):
-    '''
+    """
     Load json mapping file from category label to category name
 
     Args:
@@ -171,16 +185,16 @@ def get_mapping_label_name_categories(category_names):
 
     Returns:
        category_label_to_name (dict): dictionary for mapping category label to name
-    '''
-    print('\t' + category_names)
-    with open(category_names, 'r') as f:
+    """
+    print("\t" + category_names)
+    with open(category_names, "r") as f:
         category_label_to_name = json.load(f)
         # print(category_label_to_name)
     return category_label_to_name
 
 
 def load_model(category_names, checkpoint_path):
-    '''
+    """
     Load model from checkpoint file
 
     Args:
@@ -190,19 +204,19 @@ def load_model(category_names, checkpoint_path):
     Returns:
         model (object): model to make predictions
         category_label_to_name (dict): dictionary for mapping category label to name
-    '''
-    print('Load the model checkpoint from {}'.format(checkpoint_path))
+    """
+    print("Load the model checkpoint from {}".format(checkpoint_path))
     model = load_model_checkpoint(checkpoint_path)
     # print(model)
 
-    print('Load category name and label mapping')
+    print("Load category name and label mapping")
     category_label_to_name = get_mapping_label_name_categories(category_names)
 
     return model, category_label_to_name
 
 
 def predict(image_path, checkpoint_path, top_k, category_names, gpu):
-    '''
+    """
     Load the model and redict the class (or classes) of an image
 
     Args:
@@ -214,27 +228,26 @@ def predict(image_path, checkpoint_path, top_k, category_names, gpu):
 
     Returns:
        None
-    '''
+    """
     model, category_label_to_name = load_model(category_names, checkpoint_path)
 
-    top_probabilities, top_classes = get_prediction(
-        image_path, model, top_k_probabilities=top_k)
+    top_probabilities, top_classes = get_prediction(image_path, model, top_k_probabilities=top_k)
 
-    print('Probabilities: ', top_probabilities)
+    print("Probabilities: ", top_probabilities)
     # print(top_classes)
-    print('Categories:    ', [category_label_to_name[c] for c in top_classes])
+    print("Categories:    ", [category_label_to_name[c] for c in top_classes])
 
     if image_path == TEST_IMAGE:
         # we know the directory structure so the penultimate component of the path is the categoryh path/category/image.jpg
-        path_parts = image_path.split('/')
+        path_parts = image_path.split("/")
         real_category = path_parts[-2]
-        print('True category: ', category_label_to_name[real_category])
+        print("True category: ", category_label_to_name[real_category])
     else:
         pass
 
 
 if __name__ == "__main__":
-    print('Predict')
+    print("Predict")
     image_path, checkpoint_path, top_k, category_names, gpu = parse_input_arguments()
     # print(image_path)
     # print(checkpoint_path)
