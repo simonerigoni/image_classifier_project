@@ -29,7 +29,7 @@ This project uses Python 3.11 and the most important packages are:
 
 If your system support CUDA make sure to follow this [guide](https://pytorch.org/get-started/locally/). 
 
-Check if your system has an NVIDIA GPU and CUDA installed with the command `nvidia-smi`. In my case I have CUDA version 12.8 so the command will be: 
+Check if your system has an NVIDIA GPU and CUDA installed with the command `nvidia-smi`. In my case I have CUDA version 13.0. 
 
 ![pytorch](images/pytorch.JPG)
 
