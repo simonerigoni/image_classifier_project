@@ -26,3 +26,4 @@ Overview of the status of the tasks of this project.
 - [x] Add my_scripts/*.ps1
 - [x] Big refactor
 - [x] Use uv and pre-commit
+- [x] Add CI
