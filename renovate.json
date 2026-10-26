@@ -31,6 +31,23 @@
       ],
       "groupName": "pytorch",
       "allowedVersions": "/^[0-9]+(\\.[0-9]+)*$/"
+    },
+    {
+      "description": "Keep .python-version pinned (no Docker python bumps)",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "python"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Ignore updates that only touch .python-version",
+      "matchFileNames": [
+        ".python-version"
+      ],
+      "enabled": false
     }
   ]
 }
