@@ -17,7 +17,7 @@ The goal of this project is to train an image classifier to recognize different 
 
 ## Software and Libraries
 
-This project uses Python 3.11 and the most important packages are:
+This project uses Python 3.14 and the most important packages are:
 
 - [NumPy](http://www.numpy.org/)
 - [Pandas](http://pandas.pydata.org)
