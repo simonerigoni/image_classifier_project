@@ -1,29 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "github>simonerigoni/github:renovate-config"
   ],
-  "timezone": "Europe/Amsterdam",
-  "schedule": [
-    "before 9am on monday"
-  ],
-  "pre-commit": {
-    "enabled": true
-  },
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
-  },
   "packageRules": [
-    {
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch",
-      "automerge": true
-    },
     {
       "matchPackageNames": [
         "torch",
@@ -31,30 +11,6 @@
       ],
       "groupName": "pytorch",
       "allowedVersions": "/^[0-9]+(\\.[0-9]+)*$/"
-    },
-    {
-      "description": "Keep .python-version pinned (no Docker python bumps)",
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
-        "python"
-      ],
-      "enabled": false
-    },
-    {
-      "description": "Ignore updates that only touch .python-version",
-      "matchFileNames": [
-        ".python-version"
-      ],
-      "enabled": false
-    },
-    {
-      "description": "Keep Python at 3.11: no Python version updates (pyenv, docker, setup-python, uv)",
-      "matchDepNames": [
-        "python"
-      ],
-      "enabled": false
     }
   ]
 }
