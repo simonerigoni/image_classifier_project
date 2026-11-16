@@ -8,28 +8,27 @@
 # python train.py
 # python train.py --network "vgg16" --learning_rate 0.001 --hidden_units 1024 --epochs 10 --gpu
 
+import argparse
+import json
 import os
+import time
+from collections import OrderedDict
+
 import torch
 import torchvision
-from collections import OrderedDict
-import json
-import time
-import argparse
-
 
 from src.config import (
-    TRAIN_FOLDER,
-    TEST_FOLDER,
-    VALID_FOLDER,
     CATEGORY_FILENAME,
     CHECKPOINT_FILENAME,
-    DEFAULT_NETWORK,
-    DEFAULT_LEARNING_RATE,
-    DEFAULT_HIDDEN_UNITS,
     DEFAULT_EPOCHS,
     DEFAULT_GPU,
+    DEFAULT_HIDDEN_UNITS,
+    DEFAULT_LEARNING_RATE,
+    DEFAULT_NETWORK,
+    TEST_FOLDER,
+    TRAIN_FOLDER,
+    VALID_FOLDER,
 )
-
 
 DEGREES_ROTATION = 30
 SIZE_CROP = 224
@@ -217,7 +216,7 @@ def get_mapping_label_name_categories():
     """
     mapping_file = CATEGORY_FILENAME
     print("\t" + mapping_file)
-    with open(mapping_file, "r") as f:
+    with open(mapping_file) as f:
         category_label_to_name = json.load(f)
         # print(category_label_to_name)
     return category_label_to_name
@@ -372,8 +371,8 @@ def train(network, learning_rate, hidden_units, epochs, gpu):
             train_loss = train_loss + loss.item()
 
         print(
-            "\nEpoch: {}/{} ".format(epoch + 1, epochs),
-            "\n    Training:\n      Loss: {:.4f}  ".format(train_loss / len(train_loader)),
+            f"\nEpoch: {epoch + 1}/{epochs} ",
+            f"\n    Training:\n      Loss: {train_loss / len(train_loader):.4f}  ",
         )
 
         if validation_step is True:
@@ -403,15 +402,15 @@ def train(network, learning_rate, hidden_units, epochs, gpu):
             model.train()
 
             print(
-                "\n    Validation:\n      Loss: {:.4f}  ".format(valid_loss / len(valid_loader)),
-                "Accuracy: {:.4f}".format(valid_accuracy / len(valid_loader)),
+                f"\n    Validation:\n      Loss: {valid_loss / len(valid_loader):.4f}  ",
+                f"Accuracy: {valid_accuracy / len(valid_loader):.4f}",
             )
 
     end_time = time.time()
     print("Training ended")
 
     training_time = end_time - start_time
-    print("\nTraining time: {:.0f}m {:.0f}s".format(training_time / 60, training_time % 60))
+    print(f"\nTraining time: {training_time / 60:.0f}m {training_time % 60:.0f}s")
 
     # Do validation on the test set
     print("Validation on the test set")
@@ -437,14 +436,14 @@ def train(network, learning_rate, hidden_units, epochs, gpu):
         test_accuracy = test_accuracy + torch.mean(equals.type(torch.FloatTensor)).item()
 
     print(
-        "\nTest:\n  Loss: {:.4f}  ".format(test_loss / len(test_loader)),
-        "Accuracy: {:.4f}".format(test_accuracy / len(test_loader)),
+        f"\nTest:\n  Loss: {test_loss / len(test_loader):.4f}  ",
+        f"Accuracy: {test_accuracy / len(test_loader):.4f}",
     )
 
     end_time = time.time()
     print("Validation ended")
     validation_time = end_time - start_time
-    print("Validation time: {:.0f}m {:.0f}s".format(validation_time / 60, validation_time % 60))
+    print(f"Validation time: {validation_time / 60:.0f}m {validation_time % 60:.0f}s")
 
     save_model_checkpoint(
         model,
@@ -457,7 +456,7 @@ def train(network, learning_rate, hidden_units, epochs, gpu):
         optimizer,
         CHECKPOINT_FILENAME,
     )
-    print("Save the checkpoint in {}".format(CHECKPOINT_FILENAME))
+    print(f"Save the checkpoint in {CHECKPOINT_FILENAME}")
 
 
 if __name__ == "__main__":
