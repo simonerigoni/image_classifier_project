@@ -9,22 +9,21 @@
 # python predict.py
 # python predict.py --image_path flowers/test/11/image_03098.jpg --checkpoint_path checkpoints/checkpoint.pth --top_k 5 --category_names cat_to_name.json --gpu
 
+import argparse
+import json
+
 import numpy as np
 import torch
 import torchvision
-import json
 from PIL import Image
-import argparse
-
 
 from src.config import (
     CATEGORY_FILENAME,
     CHECKPOINT_FILENAME,
-    TEST_IMAGE,
-    DEFAULT_TOP_K,
     DEFAULT_GPU,
+    DEFAULT_TOP_K,
+    TEST_IMAGE,
 )
-
 
 SIZE_CROP = 224
 SIZE_RESIZE = 256
@@ -187,7 +186,7 @@ def get_mapping_label_name_categories(category_names):
        category_label_to_name (dict): dictionary for mapping category label to name
     """
     print("\t" + category_names)
-    with open(category_names, "r") as f:
+    with open(category_names) as f:
         category_label_to_name = json.load(f)
         # print(category_label_to_name)
     return category_label_to_name
@@ -205,7 +204,7 @@ def load_model(category_names, checkpoint_path):
         model (object): model to make predictions
         category_label_to_name (dict): dictionary for mapping category label to name
     """
-    print("Load the model checkpoint from {}".format(checkpoint_path))
+    print(f"Load the model checkpoint from {checkpoint_path}")
     model = load_model_checkpoint(checkpoint_path)
     # print(model)
 

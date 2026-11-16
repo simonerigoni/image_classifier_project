@@ -2,25 +2,24 @@
 #
 # python image_classifier_project.py
 
-import os
 import argparse
-import src.classifier.train as classifier_train
+import os
+
 import src.classifier.predict as classifier_predict
-
-
+import src.classifier.train as classifier_train
 from src.config import (
-    TRAIN_FOLDER,
-    TEST_FOLDER,
-    VALID_FOLDER,
     CATEGORY_FILENAME,
     CHECKPOINT_FILENAME,
-    TEST_IMAGE,
-    DEFAULT_NETWORK,
-    DEFAULT_LEARNING_RATE,
-    DEFAULT_HIDDEN_UNITS,
     DEFAULT_EPOCHS,
-    DEFAULT_TOP_K,
     DEFAULT_GPU,
+    DEFAULT_HIDDEN_UNITS,
+    DEFAULT_LEARNING_RATE,
+    DEFAULT_NETWORK,
+    DEFAULT_TOP_K,
+    TEST_FOLDER,
+    TEST_IMAGE,
+    TRAIN_FOLDER,
+    VALID_FOLDER,
 )
 
 
@@ -52,7 +51,7 @@ def load_classifier(checkpoint_filename=CHECKPOINT_FILENAME):
         model (object): model loaded from checkpoint
         category_label_to_name (dict): dictionary for mapping category label to name
     """
-    print("Check if checkpoint model present\n\tCheckpoint: {}".format(checkpoint_filename))
+    print(f"Check if checkpoint model present\n\tCheckpoint: {checkpoint_filename}")
     if os.path.isfile(checkpoint_filename) is False:
         print("Not present. Training the model")
         classifier_train.train(
@@ -131,7 +130,7 @@ if __name__ == "__main__":
     image_path = parse_input_arguments()
     model, category_label_to_name = load_classifier()
 
-    print("Number of categories: {}".format(get_number_of_classes()))
+    print(f"Number of categories: {get_number_of_classes()}")
     # print(get_sample_from_training_dataset(category_label_to_name))
 
     category_probability = get_prediction(model, category_label_to_name, image_path)
