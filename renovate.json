@@ -11,6 +11,13 @@
       ],
       "groupName": "pytorch",
       "allowedVersions": "/^[0-9]+(\\.[0-9]+)*$/"
+    },
+    {
+      "description": "Keep Python 3.14 until torchvision has cp315 wheels for the pinned 0.28.0+cu130 build (it currently stops at cp314). torchvision 0.29.x+cu130 does ship cp315, so drop this rule after that bump.",
+      "matchPackageNames": [
+        "python"
+      ],
+      "allowedVersions": "<3.15"
     }
   ]
 }
