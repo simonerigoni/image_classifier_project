@@ -19,7 +19,6 @@ dependencies = [
 
 
 [project.urls]
-Homepage = "https://github.com/simonerigoni/image_classifier_project"
 Repository = "https://github.com/simonerigoni/image_classifier_project"
 Website = "https://www.simonerigoni.net/blog/do-you-know-this-flower-image-classifier-using-pytorch"
 Medium = "https://medium.com/data-science/do-you-know-this-flower-image-classifier-using-pytorch-1d45c3a3df1c"
