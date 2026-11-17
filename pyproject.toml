@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Image Classifier Project"
 readme = "README.md"
 requires-python = ">=3.14,<3.15"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE.md"]
+authors = [{ name = "Simone Rigoni" }]
 dependencies = [
     "dash-bootstrap-components>=2.0.4",
     "dash>=3.3.0",
@@ -13,6 +16,13 @@ dependencies = [
     "torch==2.13.0",
     "torchvision==0.28.0",
 ]
+
+
+[project.urls]
+Repository = "https://github.com/simonerigoni/image_classifier_project"
+Website = "https://www.simonerigoni.net/blog/do-you-know-this-flower-image-classifier-using-pytorch"
+Medium = "https://medium.com/data-science/do-you-know-this-flower-image-classifier-using-pytorch-1d45c3a3df1c"
+Blogspot = "https://simonerigoni01.blogspot.com/2027/02/conosci-questo-fiore-classificatore-di.html"
 
 [dependency-groups]
 dev = [
